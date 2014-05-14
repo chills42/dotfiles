@@ -1,2 +1,4 @@
 alias ll='ls -al'
 alias gl='git log --pretty=oneline'
+
+alias edit-unmerged='vim -p `git ls-files --unmerged | cut -f2 |sort -u`'
