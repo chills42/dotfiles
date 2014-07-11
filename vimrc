@@ -33,5 +33,4 @@ filetype plugin indent on
 
 " non-plugin stuff below
 set background=light
-colorscheme solarized
 syntax on
