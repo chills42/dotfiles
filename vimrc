@@ -8,13 +8,17 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 "Add my plugins here
-Plugin 'Solarized'
+Plugin 'tpope/vim-sensible'
+Plugin 'SirVer/ultisnips'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-surround'
-Plugin 'slim-template/vim-slim.git'
+Plugin 'tpope/vim-markdown'
+Plugin 'slim-template/vim-slim'
 Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'ecomba/vim-ruby-refactoring'
+Plugin 'wting/rust.vim'
 
 call vundle#end()
 filetype plugin indent on
