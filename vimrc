@@ -19,6 +19,11 @@ Plugin 'slim-template/vim-slim'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'wting/rust.vim'
+Plugin 'nginx.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'OmniSharp/omnisharp-vim'
+Plugin 'tpope/vim-dispatch'
+Plugin 'kien/ctrlp.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -34,3 +39,5 @@ filetype plugin indent on
 " non-plugin stuff below
 set background=light
 syntax on
+
+set clipboard=unnamed
