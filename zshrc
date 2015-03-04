@@ -15,6 +15,7 @@ alias ls="ls -G"
 alias ll="ls -laG"
 alias gl="git log --pretty=oneline"
 alias catc="pygmentize -f terminal"
+alias gmm="git fetch && git merge --ff-only origin/master"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
