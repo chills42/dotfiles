@@ -36,8 +36,9 @@ filetype plugin indent on
 "
 " :h vundle for more details
 
+set number
+set clipboard=unnamed
+
 " non-plugin stuff below
 set background=light
 syntax on
-
-set clipboard=unnamed
