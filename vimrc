@@ -1,4 +1,4 @@
-mapleader = " "
+let mapleader = " "
 
 set nocompatible
 filetype off
