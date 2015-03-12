@@ -1,5 +1,9 @@
+mapleader = " "
+
 set nocompatible
 filetype off
+
+au BufWritePost .vimrc so $MYVIMRC
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -15,6 +19,9 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-fugitive'
+Plugin 'int3/vim-extradite'
+Plugin 'tpope/vim-commentary'
 Plugin 'slim-template/vim-slim'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'ecomba/vim-ruby-refactoring'
