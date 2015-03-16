@@ -31,6 +31,8 @@ Plugin 'scrooloose/syntastic'
 Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'kien/ctrlp.vim'
+Plugin 'kchmck/vim-coffee-script'
+
 
 call vundle#end()
 filetype plugin indent on
