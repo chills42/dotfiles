@@ -32,6 +32,7 @@ Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'kien/ctrlp.vim'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'tpope/vim-cucumber'
 
 
 call vundle#end()
