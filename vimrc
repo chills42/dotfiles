@@ -33,6 +33,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'kien/ctrlp.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-cucumber'
+Plugin 'groenewege/vim-less'
 
 
 call vundle#end()
