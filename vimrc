@@ -34,7 +34,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-cucumber'
 Plugin 'groenewege/vim-less'
-
+Plugin 'jgdavey/vim-blockle'
+Plugin 'dhruvasagar/vim-dotoo'
 
 call vundle#end()
 filetype plugin indent on
@@ -47,9 +48,13 @@ filetype plugin indent on
 "
 " :h vundle for more details
 
-set number
-set clipboard=unnamed
+" plugin config options
+
+let g:syntastic_ruby_checkers          = ['rubocop', 'mri']
+let g:syntastic_ruby_rubocop_exec      = '~/.rbenv/shims/rubocop'
 
 " non-plugin stuff below
+set number
+set clipboard=unnamed
 set background=light
 syntax on
