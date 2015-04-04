@@ -35,6 +35,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-cucumber'
 Plugin 'groenewege/vim-less'
 Plugin 'jgdavey/vim-blockle'
+Plugin 'severin-lemaignan/vim-minimap'
 Plugin 'dhruvasagar/vim-dotoo'
 
 call vundle#end()
