@@ -59,3 +59,5 @@ set number
 set clipboard=unnamed
 set background=light
 syntax on
+
+autocmd Filetype gitcommit setlocal spell textwidth=72
