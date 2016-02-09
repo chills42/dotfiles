@@ -6,7 +6,7 @@
     who = shortlog -s -n --no-merges
     standup = shortlog --since=yesterday
 [core]
-	excludesfile = /Users/craig.hills/.gitignore_global
+    excludesfile = /Users/craig.hills/.gitignore_global
     editor = /usr/local/bin/vim
 [credential]
 [filter "media"]
