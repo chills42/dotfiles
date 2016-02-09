@@ -1,5 +1,4 @@
 source ~/.aliases
 
-if [ -f /opt/boxen/env.sh ]; then
-  source /opt/boxen/env.sh
-fi
+# added by travis gem
+[ -f /Users/craig.hills/.travis/travis.sh ] && source /Users/craig.hills/.travis/travis.sh

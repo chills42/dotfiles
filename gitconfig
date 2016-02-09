@@ -3,12 +3,29 @@
     email = chills@gmail.com
 [alias]
     st = status
+    who = shortlog -s -n --no-merges
+    standup = shortlog --since=yesterday
 [core]
-    excludesfile = /opt/boxen/config/git/gitignore
+	excludesfile = /Users/craig.hills/.gitignore_global
+    editor = /usr/local/bin/vim
 [credential]
-    helper = /opt/boxen/bin/boxen-git-credential
 [filter "media"]
-    clean = git-media-clean %f
-    smudge = git-media-smudge %f
+    required = true
+    clean = git media clean %f
+    smudge = git media smudge %f
 [hub]
     protocol = https
+[push]
+    default = simple
+[filter "hawser"]
+    clean = git hawser clean %f
+    smudge = git hawser smudge %f
+    required = true
+[github]
+	user = chills42
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
+[credential]
+	helper = osxkeychain
