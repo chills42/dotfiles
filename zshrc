@@ -17,6 +17,12 @@ alias gl="git log --pretty=oneline"
 alias catc="pygmentize -f terminal"
 alias gmm="git fetch && git merge --ff-only origin/master"
 alias gco="git checkout"
+alias speak="tee /dev/tty | say -v Samantha"
+
+dmenv () {
+  eval "$(docker-machine env default)"
+}
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
