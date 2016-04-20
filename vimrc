@@ -13,7 +13,9 @@ Plugin 'gmarik/Vundle.vim'
 
 "Add my plugins here
 Plugin 'tpope/vim-sensible'
+Plugin 'ervandew/supertab'
 Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-rbenv'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-rails'
@@ -46,6 +48,8 @@ Plugin 'dhruvasagar/vim-dotoo'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'mtth/scratch.vim'
 Plugin 'elmcast/elm-vim'
+Plugin 'ledger/vim-ledger'
+Plugin 'vim-scripts/EnvEdit.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -73,6 +77,10 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 " map <Leader>s :call RunNearestSpec()<CR>
 " map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " non-plugin stuff below
 set number
