@@ -1,6 +1,7 @@
 [user]
     name = Craig Hills
     email = chills@gmail.com
+	signingkey = 60A75706D0E6C4AA
 [alias]
     st = status
     who = shortlog -s -n --no-merges
@@ -29,3 +30,5 @@
 	required = true
 [credential]
 	helper = osxkeychain
+[commit]
+	gpgsign = true
