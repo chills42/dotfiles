@@ -100,3 +100,5 @@ export PATH="/usr/local/bin:$PATH"
 
 export PATH="$PATH:/usr/local/lib/node_modules"
 source $(brew --prefix nvm)/nvm.sh
+
+export PATH="$HOME/.cargo/bin:$PATH"
