@@ -7,22 +7,9 @@ export ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="pygmalion"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-alias ls="ls -G"
-alias ll="ls -laG"
-alias gl="git log --pretty=oneline"
-alias catc="pygmentize -f terminal"
-alias gmm="git fetch && git merge --ff-only origin/master"
-alias gco="git checkout"
-alias speak="tee /dev/tty | say -v Samantha"
-
 dmenv () {
   eval "$(docker-machine env default)"
 }
-
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -102,3 +89,5 @@ export PATH="$PATH:/usr/local/lib/node_modules"
 source $(brew --prefix nvm)/nvm.sh
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+[[ -f ~/.aliases ]] && source ~/.aliases

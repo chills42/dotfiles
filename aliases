@@ -1,5 +1,11 @@
-alias ll='ls -al'
-alias gl='git log --pretty=oneline'
+alias ls="ls -G"
+alias ll="ls -laG"
 
+alias gl="git log --pretty=oneline"
+alias gmm="git fetch && git merge --ff-only origin/master"
+alias gco="git checkout"
+
+alias speak="tee /dev/tty | say -v Samantha"
+alias catc="pygmentize -f terminal"
 alias edit-unmerged='vim -p `git ls-files --unmerged | cut -f2 |sort -u`'
 alias edit-modified='vim -p `git status --porcelain | grep ^.M | cut -c 4-`'
