@@ -38,7 +38,8 @@ Plugin 'nginx.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'tpope/vim-dispatch'
-Plugin 'kien/ctrlp.vim'
+"Plugin 'kien/ctrlp.vim'
+Plugin 'junegunn/fzf'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-cucumber'
 Plugin 'groenewege/vim-less'
@@ -50,6 +51,8 @@ Plugin 'mtth/scratch.vim'
 Plugin 'elmcast/elm-vim'
 Plugin 'ledger/vim-ledger'
 Plugin 'vim-scripts/EnvEdit.vim'
+Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'mileszs/ack.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -70,17 +73,24 @@ let g:syntastic_ruby_rubocop_quiet_messages = { "level" : [] }
 
 let g:syntastic_slim_checkers = ['slimrb']
 
-let g:rustfmt_autosave = 1
+" let g:rustfmt_autosave = 1
 
 " RSpec.vim mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
-" map <Leader>s :call RunNearestSpec()<CR>
-" map <Leader>l :call RunLastSpec()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
+let g:rspec_runner = "os_x_iterm2"
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Ack.vim
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 " non-plugin stuff below
 set number
@@ -119,4 +129,3 @@ function! s:RunShellCommand(cmdline)
   silent execute '$read !'. expanded_cmdline
   1
 endfunction
-

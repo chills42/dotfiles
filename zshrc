@@ -80,14 +80,30 @@ eval "$(rbenv init -)"
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/.local/bin:/usr/local/bin:$PATH:/usr/local/lib/node_modules"
 
-# recommended by brew doctor
-export PATH="/usr/local/bin:$PATH"
+export PATH="$PATH:./node_modules/.bin"
 
-export PATH="$PATH:/usr/local/lib/node_modules"
 source $(brew --prefix nvm)/nvm.sh
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
+export PATH="$PATH:/usr/local/gcc_arm/gcc-arm-none-eabi-6_2-2016q4/bin/"
+
+export LEDGER_FILE="$HOME/ledger.ldg"
+export LEDGER="$LEDGER_FILE"
+export LEDGER_PRICE_DB="$HOME/prices.db"
+export TIMELOG="$HOME/time_log.txt"
+
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+[[ -f ~/.profile ]] && source ~/.profile
+
 [[ -f ~/.aliases ]] && source ~/.aliases
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/usr/local/sbin:$PATH"
+
+# allow locally installed npm binaries to be executed;
+# added by `npm i -g add-local-binaries-to-path`
+export PATH="$PATH:./node_modules/.bin"

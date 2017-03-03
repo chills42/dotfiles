@@ -9,3 +9,6 @@ alias speak="tee /dev/tty | say -v Samantha"
 alias catc="pygmentize -f terminal"
 alias edit-unmerged='vim -p `git ls-files --unmerged | cut -f2 |sort -u`'
 alias edit-modified='vim -p `git status --porcelain | grep ^.M | cut -c 4-`'
+
+alias ti="echo i `date '+%Y-%m-%d %H:%M:%S'` \$* >>$TIMELOG"
+alias to="echo o `date '+%Y-%m-%d %H:%M:%S'` >>$TIMELOG"
