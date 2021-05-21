@@ -1,109 +1,80 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="pygmalion"
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplug "plugins/brew", from:oh-my-zsh
+zplug 'ryutok/rust-zsh-completions'
+zplug "jeffreytse/zsh-vi-mode"
+zplug "plugins/git",   from:oh-my-zsh
+zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
+zplug "plugins/zsh_reload", from:oh-my-zsh
+zplug "plugins/colorize", from:oh-my-zsh
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "b4b4r07/zplug"
+zplug "mafredri/zsh-async", from:github
+zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 
-dmenv () {
-  eval "$(docker-machine env default)"
-}
+zplug load
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+autoload -U promptinit; promptinit
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+zstyle ':prompt:pure:prompt:*' color cyan
+zstyle :prompt:pure:git:stash show yes
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+prompt pure
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+fpath=(/usr/local/opt/zplug/repos/zsh-users/zsh-completions/src/ $fpath)
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to disable command auto-correction.
-# DISABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# Update History Settings
+export HISTFILE=~/.zsh_history # Where it gets saved
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt append_history # Don't overwrite, append!
+setopt INC_APPEND_HISTORY # Write after each command
+setopt hist_expire_dups_first # Expire duplicate entries first when trimming history.
+setopt hist_fcntl_lock # use OS file locking
+setopt hist_ignore_all_dups # Delete old recorded entry if new entry is a duplicate.
+setopt hist_lex_words # better word splitting, but more CPU heavy
+setopt hist_reduce_blanks # Remove superfluous blanks before recording entry.
+setopt hist_save_no_dups # Don't write duplicate entries in the history file.
+setopt share_history # share history between multiple shells
+setopt HIST_IGNORE_SPACE # Don't record an entry starting with a space.
 HIST_STAMPS="yyyy-mm-dd"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(vi-mode rbenv brew)
-
-source $ZSH/oh-my-zsh.sh
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "$terminfo[kcuu1]" up-line-or-beginning-search # Up
+bindkey "$terminfo[kcud1]" down-line-or-beginning-search # Down
 
 # User configuration
 
-export PATH="~/rbenv/bin:~/nodenv/shims:$PATH"
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# initialize rbenv
-eval "$(rbenv init -)"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-export PATH="$HOME/.local/bin:/usr/local/bin:$PATH:/usr/local/lib/node_modules"
-
-export PATH="$PATH:./node_modules/.bin"
-
-source $(brew --prefix nvm)/nvm.sh
-
-export PATH="$HOME/.cargo/bin:$PATH"
-
-export PATH="$PATH:/usr/local/gcc_arm/gcc-arm-none-eabi-6_2-2016q4/bin/"
-
-export LEDGER_FILE="$HOME/ledger.ldg"
-export LEDGER="$LEDGER_FILE"
-export LEDGER_PRICE_DB="$HOME/prices.db"
-export TIMELOG="$HOME/time_log.txt"
-
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-
-[[ -f ~/.profile ]] && source ~/.profile
+export EDITOR='vim'
 
 [[ -f ~/.aliases ]] && source ~/.aliases
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="/usr/local/sbin:$PATH"
+if [ -f ~/.zshrc_local ]; then
+    source ~/.zshrc_local
+fi
 
-# allow locally installed npm binaries to be executed;
-# added by `npm i -g add-local-binaries-to-path`
-export PATH="$PATH:./node_modules/.bin"
+## Monkey with the PATH
+export PATH="$HOME/.local/bin:/usr/local/bin:$HOME/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.conduit/bin:$PATH"
+export PATH="$PATH:/usr/local/sbin"
+export PATH="$PATH:/usr/local/lib/node_modules"
+export PATH=~/.dotfiles/bin:${PATH}
+
+
+# Rust build config
+export RUSTC_WRAPPER=sccache
+
+
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+
+

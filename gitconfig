@@ -1,12 +1,12 @@
-[user]
-    name = Craig Hills
-    email = chills@gmail.com
 [alias]
     st = status
     who = shortlog -s -n --no-merges
     standup = shortlog --since=yesterday
+    cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
+    l = log --stat --abbrev-commit
+    lg = log --color --graph --pretty=format:'%C(bold white)%h%Creset -%C(bold green)%d%Creset %s %C(bold green)(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	branchlist = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)%09%(color:red)%(authorname)%09%(color:yellow)%(color:bold)%(refname:short)\" refs/remotes
 [core]
-    excludesfile = /Users/craig.hills/.gitignore_global
     editor = /usr/local/bin/vim
 [filter "media"]
     required = true
@@ -20,11 +20,13 @@
     clean = git hawser clean %f
     smudge = git hawser smudge %f
     required = true
-[github]
-	user = chills42
 [filter "lfs"]
-	clean = git lfs clean %f
-	smudge = git lfs smudge %f
-	required = true
-[commit]
-	gpgsign = true
+    clean = git lfs clean %f
+    smudge = git lfs smudge %f
+    required = true
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
+[include]
+        path = ~/.gitconfig_local

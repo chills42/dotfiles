@@ -5,56 +5,58 @@ filetype off
 
 au BufWritePost .vimrc so $MYVIMRC
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-" required, start vundling
-Plugin 'gmarik/Vundle.vim'
+Plug 'w0rp/ale'
+Plug 'tpope/vim-sensible'
+Plug 'ervandew/supertab'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'tpope/vim-rbenv'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'bling/vim-airline'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'int3/vim-extradite'
+Plug 'slim-template/vim-slim'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'thoughtbot/vim-rspec'
+Plug 'ecomba/vim-ruby-refactoring'
+Plug 'rust-lang/rust.vim'
+Plug 'timonv/vim-cargo'
+Plug 'cespare/vim-toml'
+Plug 'pest-parser/pest.vim'
+Plug 'junegunn/fzf'
+Plug 'kchmck/vim-coffee-script'
+Plug 'tpope/vim-cucumber'
+Plug 'groenewege/vim-less'
+Plug 'jgdavey/vim-blockle'
+Plug 'severin-lemaignan/vim-minimap'
+Plug 'dhruvasagar/vim-dotoo'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'mtth/scratch.vim'
+Plug 'elmcast/elm-vim'
+Plug 'ledger/vim-ledger'
+Plug 'vim-scripts/EnvEdit.vim'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'mileszs/ack.vim'
+Plug 'b4b4r07/vim-hcl'
+Plug 'chr4/nginx.vim'
+Plug 'Ron89/thesaurus_query.vim'
+Plug 'reedes/vim-pencil'
+Plug 'reedes/vim-wordy'
+Plug 'aklt/plantuml-syntax'
+Plug 'flowtype/vim-flow'
+Plug 'skanehira/gh.vim'
 
-"Add my plugins here
-Plugin 'tpope/vim-sensible'
-Plugin 'ervandew/supertab'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'tpope/vim-rbenv'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-sleuth'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-markdown'
-Plugin 'tpope/vim-fugitive'
-Plugin 'bling/vim-airline'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'int3/vim-extradite'
-Plugin 'tpope/vim-commentary'
-Plugin 'slim-template/vim-slim'
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'ecomba/vim-ruby-refactoring'
-Plugin 'rust-lang/rust.vim'
-Plugin 'timonv/vim-cargo'
-Plugin 'cespare/vim-toml'
-Plugin 'nginx.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'OmniSharp/omnisharp-vim'
-Plugin 'tpope/vim-dispatch'
-"Plugin 'kien/ctrlp.vim'
-Plugin 'junegunn/fzf'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'tpope/vim-cucumber'
-Plugin 'groenewege/vim-less'
-Plugin 'jgdavey/vim-blockle'
-Plugin 'severin-lemaignan/vim-minimap'
-Plugin 'dhruvasagar/vim-dotoo'
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'mtth/scratch.vim'
-Plugin 'elmcast/elm-vim'
-Plugin 'ledger/vim-ledger'
-Plugin 'vim-scripts/EnvEdit.vim'
-Plugin 'ludovicchabant/vim-gutentags'
-Plugin 'mileszs/ack.vim'
+call plug#end()
 
-call vundle#end()
 filetype plugin indent on
 
 " Brief help
@@ -67,11 +69,16 @@ filetype plugin indent on
 
 " plugin config options
 
-let g:syntastic_ruby_checkers          = ['rubocop', 'mri']
-let g:syntastic_ruby_rubocop_exec      = '~/.rbenv/shims/rubocop'
-let g:syntastic_ruby_rubocop_quiet_messages = { "level" : [] }
+let g:ale_linters = {'rust': ['rustfmt', 'analyzer']}
 
-let g:syntastic_slim_checkers = ['slimrb']
+let g:ale_rust_analyzer_config = {
+      \ 'diagnostics': { 'disabled': ['unresolved-import'] },
+      \ 'cargo': { 'loadOutDirsFromCheck': v:true },
+      \ 'procMacro': { 'enable': v:true },
+      \ 'checkOnSave': { 'command': 'clippy', 'enable': v:true }
+      \ }
+
+let g:airline#extensions#ale#enabled = 1
 
 " let g:rustfmt_autosave = 1
 
@@ -95,15 +102,28 @@ endif
 " non-plugin stuff below
 set number
 set clipboard=unnamed
-set background=light
+" set background=light
 
 set noerrorbells
 set noswapfile
 set nobackup
 
+if executable('rg')
+  set grepprg=rg\ --vimgrep
+  set grepformat^=%f:%l:%c:%m
+endif
+
 syntax on
 
+" NETRW config
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 3
+
 autocmd Filetype gitcommit setlocal spell textwidth=72
+
+autocmd FileType markdown setlocal spell
+autocmd Filetype markdown setlocal makeprg=pandoc\ --pdf-engine\=xelatex\ -o\ %.pdf\ %
 
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
 function! s:RunShellCommand(cmdline)
