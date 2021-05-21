@@ -15,3 +15,4 @@
     ~/.config/alacritty/alacritty.yml: config/alacritty/alacritty.yml
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
+    - [brew bundle, Installing homebrew packages]
