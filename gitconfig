@@ -8,6 +8,7 @@
 	branchlist = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)%09%(color:red)%(authorname)%09%(color:yellow)%(color:bold)%(refname:short)\" refs/remotes
 [core]
     editor = /usr/local/bin/vim
+    excludesfile = /Users/craighills/.gitignore
 [filter "media"]
     required = true
     clean = git media clean %f
